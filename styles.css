@@ -23,7 +23,7 @@ h1, h2, h3 {
 
 
 .site-header {
-  background: #2563eb;        /* blue header */
+  background: black;        /* blue header */
   padding: 20px;
   text-align: center;
   color: white;
@@ -46,7 +46,7 @@ h1, h2, h3 {
 
 .card h2 {
   margin-bottom: 10px;
-  color: #2563eb;             /* blue section titles */
+  color:black;             /* blue section titles */
 }
 
 
