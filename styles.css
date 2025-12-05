@@ -37,7 +37,7 @@ h1, h2, h3 {
 
 
 .card {
-  background: white;
+  background:honeydew;
   padding: 20px;
   margin: 20px 0;
   border-radius: 10px;
@@ -71,7 +71,7 @@ h1, h2, h3 {
 
 /* image wrapper keeps images tidy */
 .image-wrapper {
-  background: #f9fafb;        /* soft background */
+  background:burlywood;        /* soft background */
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
