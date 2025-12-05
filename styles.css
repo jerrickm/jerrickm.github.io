@@ -1,16 +1,88 @@
-body {
-background:burlywood;
-font-family: Arial, Helvetica, sans-serif;
+/* ---------- base / reset ---------- */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background: burlywood; color: #111; }
+.container { width: 94%; max-width: 1100px; margin: 0 auto; padding: 24px 0; }
+
+/* header */
+.site-header { padding: 18px 0; text-align: center; }
+.site-header h1 { margin: 0; color: honeydew; font-size: 1.8rem; }
+
+/* simple card look for sections */
+.card {
+  background: honeydew;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
 }
-h1 {
-color: honeydew;
-text-align: center;
+
+/* ---------- Projects layout ---------- */
+/* make projects container a responsive grid/flex that wraps */
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: flex-start;
 }
-.projects { display:flex; flex-wrap:wrap; } /* condensed to save space */
+
+/* each project becomes a flexible column that shrinks on small screens */
 .project {
-width: 30%;
-margin: 10px;
-padding: 20px 10px;
-background: honeydew; 
-border-radius: 25%;
+  flex: 1 1 320px; /* grow, shrink, base width */
+  min-width: 260px;
+  max-width: 420px;
+  margin: 0; /* spacing controlled by gap on parent */
+  padding: 14px;
+  border-radius: 12px;
+  background: honeydew; /* kept your original color */
 }
+
+/* project title styling */
+.project h3 {
+  margin: 8px 0;
+  font-size: 1.05rem;
+}
+
+/* optional link styling inside project */
+.project-link { color: inherit; text-decoration: none; }
+
+/* ---------- Image wrapper & responsive image ---------- */
+/* wrapper to constrain images, give a card look and center the image */
+.image-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 12px 0;
+  padding: 8px;
+  border-radius: 12px;
+  background: #f8f8f8;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* target images inside the wrapper; keeps aspect ratio and makes them responsive */
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain; /* don't crop; preserves image */
+  border-radius: 8px;
+}
+
+/* small thumbnail utility (if you want a condensed image) */
+.img-thumb { max-width: 220px; max-height: 140px; object-fit: cover; }
+
+/* ---------- Utilities and responsive tweaks ---------- */
+.center { text-align: center; }
+a { color: #0b84ff; text-decoration: none; }
+.site-footer { padding: 12px 0; text-align: center; color: #153; }
+
+/* Responsive adjustments */
+@media (max-width: 820px) {
+  .container { padding: 16px; }
+  .project { flex-basis: 100%; max-width: 100%; }
+  .image-wrapper { padding: 6px; }
+  .site-header h1 { font-size: 1.4rem; }
+}
+
