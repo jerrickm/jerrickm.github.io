@@ -85,4 +85,50 @@ a { color: #0b84ff; text-decoration: none; }
   .image-wrapper { padding: 6px; }
   .site-header h1 { font-size: 1.4rem; }
 }
+/* Resume component (drop into styles.css) */
+.resume { padding: 20px 0; }
+.resume__container {
+  width: 92%;
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+  padding: 22px;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* header */
+.resume__header { text-align: center; margin-bottom: 12px; }
+.resume__name { margin: 0; font-size: 1.6rem; color: #0b84ff; }
+.resume__contact { margin-top: 6px; color: #333; font-size: 0.95rem; }
+
+/* common section layout */
+.resume__body { margin-top: 8px; }
+.resume__section { margin-top: 18px; }
+.resume__title {
+  margin: 0 0 8px 0;
+  font-size: 1.05rem;
+  color: #222;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+}
+
+/* lists and items */
+.resume__list { margin: 8px 0 0 18px; padding: 0; list-style-type: disc; }
+.resume__item { margin-bottom: 6px; font-size: 0.98rem; line-height: 1.35; }
+.resume__subtitle { margin: 8px 0 6px 0; font-size: 0.98rem; }
+
+/* sub-block inside a section (for multiple community entries) */
+.resume__sub { margin-bottom: 10px; }
+
+/* footer */
+.resume__footer { margin-top: 18px; text-align: center; color: #666; font-size: 0.9rem; }
+
+/* responsive tweak */
+@media (max-width: 700px) {
+  .resume__container { padding: 16px; }
+  .resume__name { font-size: 1.3rem; }
+}
 
