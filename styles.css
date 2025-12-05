@@ -1,90 +1,258 @@
-/* ---------- base / reset ---------- */
+:root{
+  --page-bg: honeydew;
+  --accent: burlywood;
+  --text: #000000;
+  --card-bg: #ffffff;
+  --muted: #333333;
+  --link-blue: #1e90ff; /* blue for contact links and resume */
+  --radius: 12px;
+  --max-width: 1100px;
+  --gap: 1.25rem;
+  --shadow: 0 6px 20px rgba(0,0,0,0.07);
+  --shadow-strong: 0 10px 30px rgba(0,0,0,0.12);
+  --transition: 200ms ease;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background: burlywood; color: burlywood; }
-.container { width: 94%; max-width: 1100px; margin: 0 auto; padding: 24px 0; }
-
-/* header */
-.site-header { padding: 18px 0; text-align: center; }
-.site-header h1 { margin: 0; color: honeydew; font-size: 1.8rem; }
-
-/* simple card look for sections */
-.card {
-  background: honeydew;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 18px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+html,body { height:100%; }
+body{
+  margin:0;
+  background: var(--page-bg);
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  font-size:16px;
+  padding: 2.0rem 1rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-/* ---------- Projects layout ---------- */
-/* make projects container a responsive grid/flex that wraps */
-.projects {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  align-items: flex-start;
+/* central container */
+.container{
+  width:100%;
+  max-width: var(--max-width);
+  margin: 0 auto 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+  align-items:start;
 }
 
-/* each project becomes a flexible column that shrinks on small screens */
-.project {
-  flex: 1 1 320px; /* grow, shrink, base width */
-  min-width: 260px;
-  max-width: 420px;
-  margin: 0; /* spacing controlled by gap on parent */
-  padding: 14px;
-  border-radius: 12px;
-  background: honeydew; /* kept your original color */
+/* site header */
+.site-header{
+  width:100%;
+  max-width: var(--max-width);
+  margin-bottom: 1rem;
+  background: linear-gradient(180deg, rgba(222,184,135,0.98), var(--accent));
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-strong);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
-/* project title styling */
-.project h3 {
-  margin: 8px 0;
-  font-size: 1.05rem;
+.site-header h1{
+  margin:0;
+  font-size:1.6rem;
+  color: honeydew;
+  letter-spacing: -0.5px;
+  font-weight:700;
 }
 
-/* optional link styling inside project */
-.project-link { color: inherit; text-decoration: none; }
+/* footer */
+.site-footer{
+  width:100%;
+  max-width: var(--max-width);
+  margin-top:auto;
+  padding: 1rem 0;
+  text-align:center;
+  color: var(--muted);
+}
+.site-footer small{ color: #222; }
 
-/* ---------- Image wrapper & responsive image ---------- */
-/* wrapper to constrain images, give a card look and center the image */
-.image-wrapper {
-  width: 100%;
-  max-width: 100%;
-  margin: 12px 0;
-  padding: 8px;
-  border-radius: 12px;
-  background:white;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+/* -------------------------
+   Card styles (shared)
+   ------------------------- */
+.card{
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.15rem;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,0.04);
 }
 
-/* target images inside the wrapper; keeps aspect ratio and makes them responsive */
-.image-wrapper img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain; /* don't crop; preserves image */
-  border-radius: 8px;
+/* About & Skills fine-tune */
+.about p{ margin:0 0 0.65rem; color:var(--muted); }
+.about h2, .skills h2, .projects h2, .contact h2 { margin-top:0; color: #111; }
+
+/* Skills layout */
+.skills ul{
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.5rem 0.75rem;
+  list-style:none;
+}
+.skills li{
+  background: linear-gradient(180deg, rgba(222,184,135,0.08), rgba(222,184,135,0.02));
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  font-weight:600;
+  font-size:0.95rem;
+  color:var(--muted);
+  border:1px solid rgba(222,184,135,0.14);
 }
 
-/* small thumbnail utility (if you want a condensed image) */
-.img-thumb { max-width: 220px; max-height: 140px; object-fit: cover; }
-
-/* ---------- Utilities and responsive tweaks ---------- */
-.center { text-align: center; }
-a { color: #0b84ff; text-decoration: none; }
-.site-footer { padding: 12px 0; text-align: center; color: #153; }
-
-/* Responsive adjustments */
-@media (max-width: 820px) {
-  .container { padding: 16px; }
-  .project { flex-basis: 100%; max-width: 100%; }
-  .image-wrapper { padding: 6px; }
-  .site-header h1 { font-size: 1.4rem; }
+/* -------------------------
+   Projects grid
+   ------------------------- */
+.projects{
+  display:block;
 }
 
+/* layout for the project list */
+.projects .project{
+  display:flex;
+  gap: 1rem;
+  align-items:flex-start;
+  margin-bottom: 1rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+  border-left: 6px solid rgba(222,184,135,0.15);
+  padding-left: 0.9rem;
+}
 
+.projects .project h3{
+  margin:0 0 0.2rem;
+  font-size:1.05rem;
+}
+.projects .project p{ margin:0; color:var(--muted); }
 
+/* image wrapper */
+.image-wrapper{
+  min-width: 120px;
+  max-width: 160px;
+  flex:0 0 140px;
+  overflow:hidden;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  border:1px solid rgba(0,0,0,0.04);
+}
+.image-wrapper img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition: transform var(--transition);
+}
+
+/* hover interactions */
+.project.card:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-strong);
+}
+.project.card:hover .image-wrapper img{
+  transform: scale(1.03);
+}
+
+/* project link styling */
+.project-link{
+  color: var(--muted);
+  text-decoration:none;
+  display:inline-block;
+}
+.project-link h3{ color: #111; }
+
+/* -------------------------
+   Contact / Resume area
+   ------------------------- */
+.contact .resume-btn{
+  display:inline-block;
+  margin-top: 0.7rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--link-blue), #0074d9);
+  color: #fff;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow: 0 8px 20px rgba(30,144,255,0.18);
+  transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+}
+
+/* style mailto and contact links */
+.contact a[href^="mailto"], .contact a:not(.resume-btn){
+  color: var(--link-blue);
+  text-decoration:underline;
+  font-weight:600;
+}
+
+/* special rule for contact pdf link that looks like a button even if no class in HTML */
+.contact a[href$=".pdf"]{
+  /* if you keep Updated_resume.pdf as the link, this will style it */
+  display:inline-block;
+  margin-top: 0.6rem;
+  padding: .55rem .9rem;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--link-blue), #0074d9);
+  color: #fff;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow: 0 8px 20px rgba(30,144,255,0.18);
+}
+
+/* small lists styling in contact */
+.contact ul{
+  padding-left:1.15rem;
+  margin:0.4rem 0 0;
+  color:var(--muted);
+}
+.contact li{ margin-bottom:0.45rem; }
+
+/* -------------------------
+   Responsive grid adjustments
+   ------------------------- */
+@media (min-width: 800px) {
+  .container{
+    grid-template-columns: 1fr 340px;
+    align-items:start;
+    gap: 1.6rem;
+  }
+
+  /* Make projects section span the left column */
+  main .projects{ grid-column:1 / 2; }
+  .about, .projects { grid-column: 1 / 2; }
+  .contact, .skills { grid-column: 2 / 3; }
+
+  /* stack top on the left */
+  .projects .project {
+    gap: 1.25rem;
+  }
+}
+
+/* larger screens: project cards side-by-side when possible */
+@media (min-width: 1100px) {
+  .projects .project{
+    align-items:center;
+  }
+}
+
+/* mobile: compress images and layout */
+@media (max-width:799px) {
+  .site-header{ padding: 0.9rem; }
+  .image-wrapper{ display:none; }
+  .projects .project{ padding-left: 0.5rem; border-left-width: 4px; }
+}
+
+/* accessibility focus */
+a:focus { outline: 3px solid rgba(30,144,255,0.25); outline-offset:2px; border-radius:6px; }
+
+/* small utilities */
+.center { text-align:center; }
+.small { font-size:0.9rem; color:var(--muted); }
+
+/* footer year color adjustment to match palette */
+.site-footer small { color: #111; }
