@@ -256,3 +256,56 @@ a:focus { outline: 3px solid rgba(30,144,255,0.25); outline-offset:2px; border-r
 
 /* footer year color adjustment to match palette */
 .site-footer small { color: #111; }
+/* ===== GitHub / repo section (matches site theme) ===== */
+.github.card {
+  padding: 1.15rem;
+}
+
+/* Repo grid: single column mobile, two columns on medium+ screens */
+.repo-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 0.6rem;
+}
+
+/* two columns at medium width (keeps consistent with other breakpoints) */
+@media (min-width: 760px) {
+  .repo-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Individual repo card (blend with existing .card look) */
+.repo-card {
+  background: var(--card-bg);
+  border-radius: calc(var(--radius) - 2px);
+  padding: 0.95rem;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,0.04);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+/* Hover micro-interaction matches project cards */
+.repo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-strong);
+}
+
+/* Title & link */
+.repo-card h3 { margin: 0 0 0.25rem 0; font-size: 1.03rem; }
+.repo-card h3 a { color: inherit; text-decoration: none; font-weight: 700; }
+.repo-card h3 a:hover { text-decoration: underline; }
+
+/* Description & meta */
+.repo-desc { margin: 0 0 0.45rem 0; color: var(--muted); font-size: 0.95rem; }
+.repo-meta { margin: 0; color: var(--muted); font-size: 0.88rem; }
+
+/* Small star count (keeps color subtle) */
+.repo-meta .stars { font-weight: 700; color: #222; }
+
+/* "View all" link */
+.all-link { margin-top: 0.8rem; font-size: 0.96rem; }
+
+/* Ensure repo cards compress nicely on small screens */
+@media (max-width: 799px) {
+  .repo-list { grid-template-columns: 1fr; }
+}
