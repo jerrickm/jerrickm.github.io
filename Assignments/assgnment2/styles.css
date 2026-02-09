@@ -1,0 +1,73 @@
+/* GENERAL PAGE */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: #e6eef6;
+}
+
+/* BACKGROUND IMAGE */
+#assignment-body {
+  background-image: url("assignment2img/AMPLFYfirstimg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+/* CONTENT CONTAINER */
+#content {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 14px;
+}
+
+/* HEADERS */
+#title {
+  color: #ffd166;
+  margin-top: 0;
+}
+
+#subtitle {
+  color: #ff6b6b;
+}
+
+/* PARAGRAPHS */
+p {
+  line-height: 1.6;
+}
+
+/* IMAGES */
+#images {
+  display: flex;
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.styled-img {
+  width: 48%;
+  border: 4px solid #ffd166;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+/* TABLE */
+#artist-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+}
+
+#artist-table th,
+#artist-table td {
+  border: 1px solid #ff6b6b;
+  padding: 12px;
+  text-align: left;
+}
+
+#artist-table th {
+  background-color: rgba(255, 107, 107, 0.3);
+  color: #ffffff;
+}
+
