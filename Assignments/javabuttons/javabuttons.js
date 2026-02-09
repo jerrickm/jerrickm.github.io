@@ -34,8 +34,8 @@ datePicker.addEventListener("input", () => {
 
 // Image swap
 const weatherImage = document.getElementById("weatherImage");
-const originalImage = "/javabuttonsimg/js6.png";
-const sunnyImage = "/javabuttonsimg/js10.png";
+const originalImage = "jerrickm/jerrickm.github.io/Assignments/javabuttons/javabuttonsimg/js9.png";
+const sunnyImage = "jerrickm/jerrickm.github.io/Assignments/javabuttons/javabuttonsimg/js10.png";
 
 let isSunny = false;
 
