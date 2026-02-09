@@ -1,8 +1,7 @@
-// Geometry triangle toggle
 const geometryCard = document.getElementById("geometryCard");
 const triangle = document.getElementById("triangle");
 
-const toggleTriangle = (event) => {
+const toggleTriangle = () => {
   triangle.classList.toggle("show");
 };
 
@@ -10,7 +9,7 @@ geometryCard.addEventListener("click", toggleTriangle);
 geometryCard.addEventListener("keydown", (e) => {
   if (e.key === "Enter" || e.key === " ") {
     e.preventDefault();
-    toggleTriangle(e);
+    toggleTriangle();
   }
 });
 
@@ -18,12 +17,12 @@ geometryCard.addEventListener("keydown", (e) => {
 const datePicker = document.getElementById("datePicker");
 const dateOutput = document.getElementById("dateOutput");
 
-const formatDate = (isoDate) => {
-  const [year, month, day] = isoDate.split("-");
+const formatDate = (iso) => {
+  const [year, month, day] = iso.split("-");
   return `${month}/${day}/${year}`;
 };
 
-datePicker.addEventListener("change", () => {
+datePicker.addEventListener("input", () => {
   if (!datePicker.value) {
     dateOutput.textContent = "No date selected";
     return;
@@ -35,8 +34,8 @@ datePicker.addEventListener("change", () => {
 
 // Image swap
 const weatherImage = document.getElementById("weatherImage");
-const originalImage = "jerrickm/jerrickm.github.io/javabuttons/javabuttonsimg/js9.png";
-const sunnyImage = "jerrickm/jerrickm.github.io/javabuttons/javabuttonsimg/js10.png";
+const originalImage = "/javabuttonsimg/js6.png";
+const sunnyImage = "/javabuttonsimg/js10.png";
 
 let isSunny = false;
 
