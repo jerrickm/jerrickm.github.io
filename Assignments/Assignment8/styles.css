@@ -43,7 +43,6 @@ header {
 
 .nav-list li {
   position: relative;
-  cursor: pointer;
 }
 
 .nav-list li:not(:last-child)::after {
@@ -53,8 +52,14 @@ header {
   color: #ccc;
 }
 
-.nav-list li:hover {
+.nav-list a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-list a:hover {
   color: #4f46e5;
+  cursor: pointer;
 }
 
 .mobile-toggle {
@@ -65,7 +70,21 @@ header {
   display: none;
 }
 
-.main {
+.mobile-menu ul {
+  list-style: none;
+  padding: 10px;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: black;
+}
+
+.mobile-menu a:hover {
+  color: #4f46e5;
+}
+
+main {
   margin-top: 20px;
   text-align: center;
 }
@@ -102,13 +121,17 @@ header {
   gap: 15px;
 }
 
-.value-bubble {
-  font-weight: bold;
-}
-
 .message {
   margin-top: 15px;
   font-weight: bold;
+}
+
+.time-input-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
 }
 
 .countdown-output {
@@ -129,11 +152,6 @@ header {
 
   .mobile-toggle {
     display: block;
-  }
-
-  .mobile-menu ul {
-    list-style: none;
-    padding: 10px;
   }
 
   .mobile-menu li {

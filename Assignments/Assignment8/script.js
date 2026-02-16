@@ -1,4 +1,4 @@
-// Toggle Mobile Menu
+// Mobile Menu Toggle
 const menuBtn = document.getElementById("menuBtn");
 const mobileMenu = document.getElementById("mobileMenu");
 const menuArrow = document.getElementById("menuArrow");
@@ -13,7 +13,7 @@ menuBtn.addEventListener("click", () => {
   }
 });
 
-// Exercise Switch
+// Exercise Toggle
 const ex1Btn = document.getElementById("ex1Btn");
 const ex2Btn = document.getElementById("ex2Btn");
 const ex1 = document.getElementById("ex1");
@@ -44,10 +44,10 @@ function updateMessage(value) {
 
   if (value > 45) {
     rangeEmoji.textContent = "🥓";
-    rangeText.textContent = "More than 45 minutes — let's have bacon and eggs!";
+    rangeText.textContent = "More than 45 minutes — bacon and eggs time!";
   } else if (value >= 30) {
     rangeEmoji.textContent = "☕";
-    rangeText.textContent = "30–45 minutes — coffee time!";
+    rangeText.textContent = "30–45 minutes — coffee break!";
   } else if (value >= 15) {
     rangeEmoji.textContent = "📚";
     rangeText.textContent = "15–30 minutes — study time!";
@@ -67,37 +67,48 @@ updateMessage(range.value);
 const countMinutes = document.getElementById("countMinutes");
 const countMessage = document.getElementById("countMessage");
 const updateBtn = document.getElementById("updateCount");
+const classTimeInput = document.getElementById("classTime");
 
 function updateCountdown() {
+
+  const timeValue = classTimeInput.value;
+
+  if (!timeValue) {
+    countMessage.textContent = "Please enter a class time.";
+    return;
+  }
+
   const now = new Date();
+  const [hours, minutes] = timeValue.split(":");
+
   const classTime = new Date(
     now.getFullYear(),
     now.getMonth(),
     now.getDate(),
-    8,
-    30
+    hours,
+    minutes
   );
 
   const diff = Math.round((classTime - now) / 60000);
 
   if (diff > 15) {
-    countMessage.textContent = "Plenty of time!";
+    countMessage.textContent = "Plenty of time — relax! 😎";
   } else if (diff > 10) {
-    countMessage.textContent = "Getting close!";
+    countMessage.textContent = "Getting close! 📚";
   } else if (diff > 5) {
-    countMessage.textContent = "Almost time!";
+    countMessage.textContent = "Almost time! ⏳";
   } else if (diff >= 0) {
-    countMessage.textContent = "Class is starting!";
+    countMessage.textContent = "Class is starting! 🏃";
   } else if (diff >= -5) {
-    countMessage.textContent = "Class started recently!";
+    countMessage.textContent = "Class started recently! 👀";
   } else if (diff >= -15) {
-    countMessage.textContent = "You're a bit late!";
+    countMessage.textContent = "You're a little late! 😬";
   } else {
-    countMessage.textContent = "Class started a while ago!";
+    countMessage.textContent = "Class started a while ago! 🚨";
   }
 
   countMinutes.textContent = Math.abs(diff) + " minutes";
 }
 
 updateBtn.addEventListener("click", updateCountdown);
-updateCountdown();
+
