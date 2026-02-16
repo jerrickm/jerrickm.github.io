@@ -39,3 +39,48 @@ document.getElementById("txt-num-days").onchange = (e) => {
         p.innerHTML = "You killed me :(";
     }
 };
+
+const p =document.getElementById("p-count-display");
+let count = 0;
+let countInterval;
+const startButton = document.getElementById("btn-start-count");
+
+startButton.onclick = () => {
+    countInterval = setInterval(()=>{
+        startButton.disabled = true;
+        p.innerHTML = count++;
+    },500);
+};
+
+document.getElementById("btn-pause-count").onclick = () => {
+    startButton.disabled = false;
+    clearInterval(countInterval);
+};
+
+document.getElementById("btn-stop-count").onclick = () => {
+    startButton.disabled = false;
+    count = 0;
+    clearInterval(countInterval);
+};
+
+/* Display the date */
+setInterval(()=>{
+    const today = new Date();
+    const month = today.getMonth();
+    const day = today.getDay();
+    const year = today.getFullYear();
+    const seconds = today.getSeconds();
+    const minutes = today.getMinutes();
+    const hours = today.getHours();
+
+    document.getElementById("p-date").innerHTML = `${hours}:${minutes}:${seconds}, ${month}/${day}/${year}`;
+}, 500);
+
+/* donation */
+document.getElementById ("btn-display-donation").onclick = () => {
+    const errorP = document.getElementById ("txt-donation").value;
+
+    if(isNaN(donationText) || donationText < 0){
+        errorP.innerHTML = (" Invalied amount")
+    }
+}

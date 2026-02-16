@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMPLFY - Invest in Underground Music Artists</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-content">
+                <!-- Logo -->
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <span class="logo-text">AMPLFY</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="nav-links">
+                    <a href="#" class="nav-link active" onclick="showPage('dashboard')">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#" class="nav-link" onclick="showPage('discover')">
+                        <i class="fas fa-compass"></i>
+                        <span>Discover</span>
+                    </a>
+                    <a href="#" class="nav-link" onclick="showPage('portfolio')">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Portfolio</span>
+                    </a>
+                </div>
+
+                <!-- User Balance -->
+                <div class="user-section">
+                    <div class="balance">
+                        <div class="balance-label">Balance</div>
+                        <div class="balance-amount">$5,000.00</div>
+                    </div>
+                    <div class="user-avatar">U</div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#" class="mobile-link" onclick="showPage('dashboard')">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="mobile-link" onclick="showPage('discover')">
+                <i class="fas fa-compass"></i>
+                <span>Discover</span>
+            </a>
+            <a href="#" class="mobile-link" onclick="showPage('portfolio')">
+                <i class="fas fa-briefcase"></i>
+                <span>Portfolio</span>
+            </a>
+            <div class="mobile-balance">
+                <div class="balance-label">Balance</div>
+                <div class="balance-amount">$5,000.00</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard" class="page active">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="hero">
+                <h1>Invest in the Future of Music</h1>
+                <p>Discover underground artists early and grow your portfolio as they rise to fame</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div>
+                            <p class="stat-label">Total Artists</p>
+                            <p class="stat-value">8</p>
+                        </div>
+                        <div class="stat-icon purple">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div>
+                            <p class="stat-label">Avg. Growth</p>
+                            <p class="stat-value green">+8.4%</p>
+                        </div>
+                        <div class="stat-icon green">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div>
+                            <p class="stat-label">Total Volume</p>
+                            <p class="stat-value">$1.2M</p>
+                        </div>
+                        <div class="stat-icon blue">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <button class="tab-btn active" onclick="filterArtists('trending')">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Trending</span>
+                </button>
+                <button class="tab-btn" onclick="filterArtists('hot')">
+                    <i class="fas fa-fire"></i>
+                    <span>Hot</span>
+                </button>
+                <button class="tab-btn" onclick="filterArtists('new')">
+                    <i class="fas fa-clock"></i>
+                    <span>New</span>
+                </button>
+            </div>
+
+            <!-- Artists Grid -->
+            <div class="artists-grid" id="artistsGrid">
+                <!-- Artists will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Discover Page -->
+    <div id="discover" class="page">
+        <div class="container">
+            <h1>Discover Artists</h1>
+            <p class="page-subtitle">Browse and invest in underground talent</p>
+
+            <!-- Filters -->
+            <div class="filters-card">
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label>Search</label>
+                        <div class="search-input">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Search artists..." onkeyup="applyFilters()">
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Genre</label>
+                        <select id="genreFilter" onchange="applyFilters()">
+                            <option value="all">All Genres</option>
+                            <option value="Hip-Hop">Hip-Hop</option>
+                            <option value="Indie Pop">Indie Pop</option>
+                            <option value="Electronic">Electronic</option>
+                            <option value="Rock">Rock</option>
+                            <option value="Jazz">Jazz</option>
+                            <option value="R&B">R&B</option>
+                            <option value="Alternative">Alternative</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Sort By</label>
+                        <select id="sortFilter" onchange="applyFilters()">
+                            <option value="listeners">Monthly Listeners</option>
+                            <option value="price">Share Price</option>
+                            <option value="change">Price Change</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <p class="results-count" id="resultsCount"></p>
+
+            <div class="artists-grid" id="discoverGrid">
+                <!-- All artists will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Page -->
+    <div id="portfolio" class="page">
+        <div class="container">
+            <h1>My Portfolio</h1>
+
+            <!-- Portfolio Summary -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-header">
+                            <p class="stat-label">Total Value</p>
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <p class="stat-value" id="portfolioValue">$0.00</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-header">
+                            <p class="stat-label">Total Return</p>
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <p class="stat-value green" id="portfolioReturn">+$0.00</p>
+                        <p class="return-percent" id="portfolioReturnPercent">+0.00%</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-header">
+                            <p class="stat-label">Total Invested</p>
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <p class="stat-value" id="portfolioInvested">$0.00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Holdings -->
+            <div class="holdings-card">
+                <h2>Holdings</h2>
+                <div class="table-container">
+                    <table class="holdings-table">
+                        <thead>
+                            <tr>
+                                <th>Artist</th>
+                                <th>Shares</th>
+                                <th>Avg. Price</th>
+                                <th>Current Price</th>
+                                <th>Total Value</th>
+                                <th>Return</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="holdingsTableBody">
+                            <!-- Holdings will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="transactions-card">
+                <h2>Recent Transactions</h2>
+                <div id="transactionsList">
+                    <!-- Transactions will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Artist Detail Modal -->
+    <div id="artistModal" class="modal">
+        <div class="modal-content artist-detail">
+            <span class="close-modal" onclick="closeArtistModal()">&times;</span>
+            <div id="artistDetailContent">
+                <!-- Artist details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction Modal -->
+    <div id="transactionModal" class="modal">
+        <div class="modal-content transaction-modal">
+            <div class="modal-header">
+                <h2 id="transactionModalTitle">Buy Shares</h2>
+                <span class="close-modal" onclick="closeTransactionModal()">&times;</span>
+            </div>
+
+            <div class="modal-body">
+                <div class="artist-info-modal" id="transactionArtistInfo">
+                    <!-- Artist info will be loaded here -->
+                </div>
+
+                <div class="shares-input-group">
+                    <label>Number of Shares</label>
+                    <input type="number" id="sharesInput" min="1" value="1" onchange="updateTransactionTotal()">
+                    <p class="available-shares" id="availableShares"></p>
+
+                    <div class="total-cost" id="totalCostDisplay">
+                        <div class="cost-row">
+                            <span>Total Cost</span>
+                            <span class="cost-amount" id="totalCost">$0.00</span>
+                        </div>
+                        <div class="balance-row">
+                            <span>Your Balance</span>
+                            <span id="transactionBalance">$5,000.00</span>
+                        </div>
+                    </div>
+
+                    <div id="transactionWarning" class="warning-box" style="display: none;"></div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="closeTransactionModal()">Cancel</button>
+                <button class="btn-primary" id="confirmTransactionBtn" onclick="confirmTransaction()">Confirm Purchase</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
