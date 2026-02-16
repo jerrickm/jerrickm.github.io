@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Class Timer Assignment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div class="brand">
+          <div class="logo">CT</div>
+          <div>
+            <h1>Class Timer — Exercise</h1>
+            <p class="lead">Switch between Exercise 1 and Exercise 2</p>
+          </div>
+        </div>
+
+        <nav>
+          <ul class="nav-list desktop-only">
+            <li>Home</li>
+            <li>Portal</li>
+            <li>Assignments</li>
+            <li>Profile</li>
+          </ul>
+
+          <div class="mobile-toggle">
+            <button id="menuBtn">
+              Menu <span class="arrow" id="menuArrow">▼</span>
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <ul>
+          <li>Home</li>
+          <li>Portal</li>
+          <li>Assignments</li>
+          <li>Profile</li>
+        </ul>
+      </div>
+
+      <main class="main">
+
+        <div class="controls">
+          <button class="tab-btn active" id="ex1Btn">Exercise 1</button>
+          <button class="tab-btn" id="ex2Btn">Exercise 2</button>
+        </div>
+
+        <!-- Exercise 1 -->
+        <section id="ex1" class="panel">
+          <h2>How many minutes until class?</h2>
+
+          <div class="slider-row">
+            <label for="minutesRange">Minutes till class</label>
+            <input id="minutesRange" type="range" min="0" max="60" value="20">
+            <div class="value-bubble" id="rangeValue">20</div>
+          </div>
+
+          <div class="message">
+            <span id="rangeEmoji">⏰</span>
+            <span id="rangeText"></span>
+          </div>
+        </section>
+
+        <!-- Exercise 2 -->
+        <section id="ex2" class="panel hidden">
+          <h2>Countdown to class (8:30 AM)</h2>
+
+          <div class="countdown-output">
+            <div class="big" id="countMinutes"></div>
+            <div id="countMessage"></div>
+            <button class="tab-btn" id="updateCount">Update</button>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
