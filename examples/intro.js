@@ -1,4 +1,4 @@
-//button click example
+///button click example
 document.getElementById("btn-show-message").onclick = ()=>{
     document.getElementById("p-message").innerHTML = "Hi Portia";
 };
@@ -76,11 +76,22 @@ setInterval(()=>{
     document.getElementById("p-date").innerHTML = `${hours}:${minutes}:${seconds}, ${month}/${day}/${year}`;
 }, 500);
 
-/* donation */
-document.getElementById ("btn-display-donation").onclick = () => {
-    const errorP = document.getElementById ("txt-donation").value;
+/* Donations */
+document.getElementById("btn-display-donation").onclick = () => {
+    const errorP = document.getElementById("p-donation-error");
+    errorP.innerHTML = "";  //if you click the button twice
+
+    const donationText = document.getElementById("txt-donation").value;
 
     if(isNaN(donationText) || donationText < 0){
-        errorP.innerHTML = (" Invalied amount")
+        errorP.innerHTML = "* Invalid amount";
+        return;
     }
+
+    donation = parseInt(donationText);
+    const percentGoal = donation/5000 * 100;
+
+    document.getElementById("p-donation").innerHTML = `You've reached ${percentGoal}% of your goal.`
+
+    document.querySelector(":root").style.setProperty("--donation",percentGoal + "%");
 }
