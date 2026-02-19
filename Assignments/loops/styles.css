@@ -77,44 +77,6 @@ html,body{
   box-shadow:0 6px 8px rgba(0,0,0,0.35);
 }
 
-.fish{
-  position:absolute;
-  width:120px;
-  height:60px;
-  animation:swim 8s ease-in-out infinite;
-}
-
-.fish .body{
-  width:80px;
-  height:44px;
-  background:linear-gradient(90deg,#ff8a65,#ff3b30);
-  border-radius:50%;
-  position:absolute;
-  left:10px;
-  top:8px;
-}
-
-.fish .tail{
-  position:absolute;
-  left:0;
-  top:20px;
-  width:0;
-  height:0;
-  border-top:14px solid transparent;
-  border-bottom:14px solid transparent;
-  border-right:26px solid #ff6d4b;
-}
-
-.fish .eye{
-  position:absolute;
-  left:62px;
-  top:18px;
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:#fff;
-  box-shadow:6px 0 0 #000;
-}
 
 @keyframes swim{
   0%{transform: translateX(0) scaleX(1);} 
