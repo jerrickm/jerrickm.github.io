@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSS Art Fish Tank</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="tank" id="tank">
+    <div class="water" id="water">
+      <div class="surface"></div>
+
+      <!-- Fish -->
+      <div class="fish" style="bottom:100px;left:320px;animation-duration:11s;">
+        <div class="tail"></div>
+        <div class="body"></div>
+        <div class="eye"></div>
+      </div>
+
+      <div class="fish" style="bottom:230px;left:520px;animation-duration:9s;animation-delay:1s;">
+        <div class="tail" style="border-right-color:#ffd36b"></div>
+        <div class="body" style="background:linear-gradient(90deg,#ffd36b,#ffb84d)"></div>
+        <div class="eye" style="left:62px;top:18px;width:7px;height:7px"></div>
+      </div>
+
+      <!-- Bubbles will be injected here -->
+      <div id="bubbles"></div>
+
+      <div class="sand">
+        <div class="pebble" style="left:80px;width:24px;height:24px;bottom:18px;"></div>
+        <div class="pebble" style="left:200px;width:36px;height:36px;bottom:8px;"></div>
+        <div class="pebble" style="left:540px;width:20px;height:20px;bottom:22px;"></div>
+        <div class="pebble" style="left:760px;width:30px;height:30px;bottom:10px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
