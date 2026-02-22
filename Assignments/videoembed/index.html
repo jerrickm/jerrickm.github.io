@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mood Music Selector</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Mood Music Selector</h1>
+
+    <div class="mood-buttons">
+        <button onclick="selectMood('happy')">😊 Happy</button>
+        <button onclick="selectMood('sad')">😔 Sad</button>
+    </div>
+
+    <div id="songList" class="song-list">
+        <p>Select a mood to see songs.</p>
+    </div>
+
+    <div id="videoPlayer" class="video-player" style="display: none;">
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

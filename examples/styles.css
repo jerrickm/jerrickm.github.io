@@ -21,6 +21,12 @@ body {
     position:relative;
 }
 
+/* tables */
+table {
+    border-collapse: collapse;
+}
+table th, table td []
+
 /* Images */
 img {
     max-width:100%;

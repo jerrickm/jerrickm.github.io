@@ -31,3 +31,47 @@ document.getElementById("btn-count-range").onclick = () => {
     }
 
 };
+ 
+document.getElementById("a-show-toys").onclick = (e) => {
+    e.preventDefault(); //dont go to the link destination
+    const toyList = document.getElementById("toy-list");
+    toyList.innerHTML = "";
+
+    const toys = ["fish","guitar","popsicle stick", "rc cars", "shoe"];
+
+    //tradional for loop
+    for(let i=0; i < toys.length; i++){
+        const li = document.getElementById("li");
+        li.innerHTML = toys[i]
+        toyList.append(li);
+    }
+
+    //second way preferred
+    //(toy,i)
+    toys.forEach((toy)=>{
+        const li = document.getElementById("li");
+        li.innerHTML = toy[i]
+        toyList.append(li);
+    });
+
+};
+
+//associative array
+const toyPrices = [];
+toyPrices["fish"]= 2.99;
+toyPrices["guitar"] = 200.00
+toyPrices["popsicle sticks"]= 0.1;
+toyPrices ["shoe"]= 49.99
+
+for(let toy in toyPrices) {
+    const toyTable = document.getElementById("toy-table");
+    const tr = document.createElement("tr");
+    toyTable.append(tr);
+    const tdToy = document.createElement("td");
+    tdToy.innerHTML = toy;
+    tr.append(tdToy);
+
+    const tdPrice = document.createElement("td")
+    tdPrice.innerHTML = '$${toyPrices[toy]}';
+    tr.append(tdPrice)
+}

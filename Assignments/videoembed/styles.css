@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e2f;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.mood-buttons button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.mood-buttons button:hover {
+    opacity: 0.8;
+}
+
+.song-list {
+    margin-top: 20px;
+}
+
+.song-list button {
+    display: block;
+    margin: 10px auto;
+    padding: 8px 15px;
+    width: 60%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #3a3a5a;
+    color: white;
+}
+
+.song-list button:hover {
+    background-color: #57578a;
+}
+
+.video-player {
+    margin-top: 30px;
+}
