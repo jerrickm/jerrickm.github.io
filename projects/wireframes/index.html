@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AMPLFY — Invest in Underground Artists</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <div class="nav-content">
+        <a class="logo" href="#" aria-label="AMPLFY home" onclick="showPage('dashboard')">
+          <div class="logo-icon"><i class="fas fa-music"></i></div>
+          <span class="logo-text">AMPLFY</span>
+        </a>
+
+        <div class="nav-links" role="menubar" aria-hidden="false">
+          <a class="nav-link active" role="menuitem" href="#" onclick="showPage('dashboard')"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+          <a class="nav-link" role="menuitem" href="#" onclick="showPage('discover')"><i class="fas fa-compass"></i><span>Discover</span></a>
+          <a class="nav-link" role="menuitem" href="#" onclick="showPage('portfolio')"><i class="fas fa-briefcase"></i><span>Portfolio</span></a>
+        </div>
+
+        <div class="user-section" aria-hidden="false">
+          <div class="balance">
+            <div class="balance-label">Balance</div>
+            <div class="balance-amount" id="topBalance">$5,000.00</div>
+          </div>
+          <div class="user-avatar" title="User">U</div>
+        </div>
+
+        <button class="mobile-menu-btn" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <a class="mobile-link" href="#" onclick="showPage('dashboard')"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+      <a class="mobile-link" href="#" onclick="showPage('discover')"><i class="fas fa-compass"></i><span>Discover</span></a>
+      <a class="mobile-link" href="#" onclick="showPage('portfolio')"><i class="fas fa-briefcase"></i><span>Portfolio</span></a>
+      <div class="mobile-balance"><div class="balance-label">Balance</div><div class="balance-amount" id="mobileBalance">$5,000.00</div></div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Dashboard -->
+    <section id="dashboard" class="page active" aria-labelledby="dashboard-title">
+      <div class="container">
+        <header class="hero" role="banner">
+          <div class="hero-copy">
+            <h1 id="dashboard-title">Discover. Support. Amplify.</h1>
+            <p>Find underground artists early and invest in their rise — be a fan and a backer.</p>
+            <div class="hero-ctas">
+              <button class="btn-primary" onclick="showPage('discover')">Explore Market</button>
+              <a class="btn-secondary" href="#" onclick="showPage('portfolio')">My Portfolio</a>
+            </div>
+            <div class="hero-stats">
+              <div><strong id="stat-artists">0</strong><span>Artists</span></div>
+              <div><strong id="stat-growth">0%</strong><span>Avg Growth</span></div>
+              <div><strong id="stat-volume">$0</strong><span>Total Volume</span></div>
+            </div>
+          </div>
+          <div class="hero-image" role="img" aria-label="Concert collage">
+            <img src="AMPLFYfirstimg.png" alt="Concert collage" />
+          </div>
+        </header>
+
+        <section class="section" aria-labelledby="featured-title">
+          <h2 id="featured-title">Featured Rising Artists</h2>
+          <div class="artists-grid" id="artistsGrid">
+            <!-- filled by JS -->
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <!-- Discover / Market -->
+    <section id="discover" class="page" aria-labelledby="discover-title">
+      <div class="container">
+        <h1 id="discover-title">Market</h1>
+        <p class="page-subtitle">Browse and invest in emerging artists</p>
+
+        <div class="filters-card">
+          <div class="filters-grid">
+            <div class="filter-group">
+              <label for="searchInput">Search</label>
+              <div class="search-input">
+                <i class="fas fa-search"></i>
+                <input id="searchInput" type="text" placeholder="Search artists, genres or keywords" onkeyup="applyFilters()" />
+              </div>
+            </div>
+            <div class="filter-group">
+              <label for="genreFilter">Genre</label>
+              <select id="genreFilter" onchange="applyFilters()">
+                <option value="all">All Genres</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="sortFilter">Sort By</label>
+              <select id="sortFilter" onchange="applyFilters()">
+                <option value="listeners">Monthly Listeners</option>
+                <option value="price">Share Price</option>
+                <option value="change">Price Change</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <p class="results-count" id="resultsCount"></p>
+        <div class="artists-grid" id="discoverGrid"></div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="page" aria-labelledby="portfolio-title">
+      <div class="container">
+        <h1 id="portfolio-title">My Portfolio</h1>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-content"><div><p class="stat-label">Total Value</p><p class="stat-value" id="portfolioValue">$0.00</p></div></div></div>
+          <div class="stat-card"><div class="stat-content"><div><p class="stat-label">Total Return</p><p class="stat-value green" id="portfolioReturn">+$0.00</p><p class="return-percent" id="portfolioReturnPercent">+0.00%</p></div></div></div>
+          <div class="stat-card"><div class="stat-content"><div><p class="stat-label">Total Invested</p><p class="stat-value" id="portfolioInvested">$0.00</p></div></div></div>
+        </div>
+
+        <div class="holdings-card">
+          <h2>Holdings</h2>
+          <div class="table-container"><table class="holdings-table"><thead><tr><th>Artist</th><th>Shares</th><th>Avg. Price</th><th>Current Price</th><th>Total Value</th><th>Return</th><th>Actions</th></tr></thead><tbody id="holdingsTableBody"></tbody></table></div>
+        </div>
+
+        <div class="transactions-card"><h2>Recent Transactions</h2><div id="transactionsList"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="artistModal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="artistModalTitle">
+    <div class="modal-content artist-detail">
+      <button class="close-modal" aria-label="Close" onclick="closeArtistModal()">&times;</button>
+      <div id="artistDetailContent"></div>
+    </div>
+  </div>
+
+  <div id="transactionModal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="transactionModalTitle">
+    <div class="modal-content transaction-modal">
+      <div class="modal-header"><h2 id="transactionModalTitle">Buy Shares</h2><button class="close-modal" aria-label="Close" onclick="closeTransactionModal()">&times;</button></div>
+      <div class="modal-body">
+        <div class="artist-info-modal" id="transactionArtistInfo"></div>
+        <div class="shares-input-group">
+          <label for="sharesInput">Number of Shares</label>
+          <input type="number" id="sharesInput" min="1" value="1" onchange="updateTransactionTotal()" />
+          <p class="available-shares" id="availableShares"></p>
+          <div class="total-cost" id="totalCostDisplay"><div class="cost-row"><span>Total Cost</span><span class="cost-amount" id="totalCost">$0.00</span></div><div class="balance-row"><span>Your Balance</span><span id="transactionBalance">$5,000.00</span></div></div>
+          <div id="transactionWarning" class="warning-box" style="display:none"></div>
+        </div>
+      </div>
+      <div class="modal-actions"><button class="btn-secondary" onclick="closeTransactionModal()">Cancel</button><button class="btn-primary" id="confirmTransactionBtn" onclick="confirmTransaction()">Confirm Purchase</button></div>
+    </div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
