@@ -1,211 +1,582 @@
-// script for AMPLFY build
-const state = {
-  balance: 5000,
-  artists: [
-    { id: 'a1', name: 'Nova Kade', genre: 'Indie Pop', listeners: 42000, price: 12.5, change: 0.08, sharesAvailable: 5000, img: 'liltonyperf.jpg', description: 'Dreamlike indie pop with cinematic hooks.' },
-    { id: 'a2', name: 'Rex Sable', genre: 'Hip-Hop', listeners: 120000, price: 21.2, change: -0.03, sharesAvailable: 2000, img: 'b6perf.jpg', description: 'Underground bars and raw storytelling.' },
-    { id: 'a3', name: 'Synthora', genre: 'Electronic', listeners: 8000, price: 4.2, change: 0.22, sharesAvailable: 10000, img: 'AMPLFYfirstimg.png', description: 'Textured synthscapes for late-night drives.' }
-  ],
-  holdings: [],
-  transactions: []
-};
+const artists = [
+    {
+        id: '1',
+        name: 'VORTEX',
+        genre: 'Hip-Hop',
+        currentPrice: 24.50,
+        priceChange24h: 12.5,
+        totalShares: 10000,
+        availableShares: 3200,
+        bio: 'Underground rapper from Brooklyn bringing raw energy and authentic storytelling. Known for gritty lyrics and boom-bap production.',
+        imageUrl: 'https://images.unsplash.com/photo-1758684519770-de01e4ffa4de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaXAlMjBob3AlMjByYXBwZXIlMjBwZXJmb3JtaW5nfGVufDF8fHx8MTc3MTIwMzU2OHww&ixlib=rb-4.1.0&q=80&w=400',
+        monthlyListeners: 45200,
+        joinedDate: '2026-01-15'
+    },
+    {
+        id: '2',
+        name: 'Luna Skye',
+        genre: 'Indie Pop',
+        currentPrice: 18.75,
+        priceChange24h: 8.3,
+        totalShares: 10000,
+        availableShares: 4500,
+        bio: 'Dreamy vocals meet bedroom pop production. Creating intimate soundscapes that resonate with the digital generation.',
+        imageUrl: 'https://images.unsplash.com/photo-1520872024865-3ff2805d8bb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmZW1hbGUlMjBpbmRpZSUyMHNpbmdlciUyMG1pY3JvcGhvbmV8ZW58MXx8fHwxNzcxMTk2NzgxfDA&ixlib=rb-4.1.0&q=80&w=400',
+        monthlyListeners: 67800,
+        joinedDate: '2026-01-20'
+    },
+    {
+        id: '3',
+        name: 'NEONWAV3',
+        genre: 'Electronic',
+        currentPrice: 32.10,
+        priceChange24h: 15.7,
+        totalShares: 10000,
+        availableShares: 2100,
+        bio: 'Future bass and synth-wave producer pushing boundaries. Viral tracks on TikTok are driving explosive growth.',
+        imageUrl: 'https://images.unsplash.com/photo-1712530708772-49749a0bad58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJvbmljJTIwbXVzaWMlMjBkaiUyMHByb2R1Y2VyfGVufDF8fHx8MTc3MTIwMzU2OHww&ixlib=rb-4.1.0&q=80&w=400',
+        monthlyListeners: 123500,
+        joinedDate: '2026-01-10'
+    },
+    {
+        id: '4',
+        name: 'The Riffs',
+        genre: 'Rock',
+        currentPrice: 15.40,
+        priceChange24h: -2.3,
+        totalShares: 10000,
+        availableShares: 5800,
+        bio: 'Garage rock revival with punk energy. Four-piece band bringing back the raw sound of the early 2000s.',
+        imageUrl: 'https://images.unsplash.com/photo-1718180801089-d99879d14bb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb2NrJTIwYmFuZCUyMGd1aXRhcmlzdCUyMGNvbmNlcnR8ZW58MXx8fHwxNzcxMjAzNTY5fDA&ixlib=rb-4.1.0&q=80&w=400',
+        monthlyListeners: 34600,
+        joinedDate: '2026-02-01'
+    },
+    {
+        id: '5',
+        name: 'Marcus Cole',
+        genre: 'Jazz',
+        currentPrice: 21.30,
+        priceChange24h: 5.2,
+        totalShares: 10000,
+        availableShares: 4200,
+        bio: 'Modern jazz saxophonist blending traditional bebop with contemporary influences. Studied at Berklee.',
+        imageUrl: 'https://images.unsplash.com/photo-1613412140788-9ed674d57c41?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYXp6JTIwbXVzaWNpYW4lMjBzYXhvcGhvbmV8ZW58MXx8fHwxNzcxMTczMTA0fDA&ixlib=rb-4.1.0&q=80&w=400',
+        monthlyListeners: 28900,
+        joinedDate: '2026-01-25'
+    },
+    {
+        id: '6',
+        name: 'Soulé',
+        genre: 'R&B',
+        currentPrice: 27.85,
+        priceChange24h: 9.8,
+        totalShares: 10000,
+        availableShares: 3600,
+        bio: 'Silky smooth vocals with neo-soul vibes. Drawing comparisons to classic R&B while creating something fresh.',
+        imageUrl: 'https://images.unsplash.com/photo-1645056094885-4a9360f33289?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxybmIlMjBzb3VsJTIwc2luZ2VyJTIwc3RhZ2V8ZW58MXx8fHwxNzcxMjAzNTcwfDA&ixlib=rb-4.1.0&q=80&w=400',
+        monthlyListeners: 89300,
+        joinedDate: '2026-01-18'
+    },
+    {
+        id: '7',
+        name: 'KID CIPHER',
+        genre: 'Hip-Hop',
+        currentPrice: 19.60,
+        priceChange24h: 18.2,
+        totalShares: 10000,
+        availableShares: 4100,
+        bio: 'Next generation lyricist with complex wordplay. Started in battle rap and bringing that energy to recordings.',
+        imageUrl: 'https://images.unsplash.com/photo-1585848061832-19e2fd237f8f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bmRlcmdyb3VuZCUyMHJhcHBlciUyMHN0dWRpb3xlbnwxfHx8fDE3NzEyMDM1NzB8MA&ixlib=rb-4.1.0&q=80&w=400',
+        monthlyListeners: 52700,
+        joinedDate: '2026-02-05'
+    },
+    {
+        id: '8',
+        name: 'GREY AREA',
+        genre: 'Alternative',
+        currentPrice: 16.25,
+        priceChange24h: -1.5,
+        totalShares: 10000,
+        availableShares: 5200,
+        bio: 'Experimental alternative rock pushing sonic boundaries. Creating atmospheric soundscapes with emotional depth.',
+        imageUrl: 'https://images.unsplash.com/photo-1597386673712-83fb0ab76ea7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbHRlcm5hdGl2ZSUyMGFydGlzdCUyMG11c2ljfGVufDF8fHx8MTc3MTIwMzU3MXww&ixlib=rb-4.1.0&q=80&w=400',
+        monthlyListeners: 41200,
+        joinedDate: '2026-02-08'
+    }
+];
 
-const fmtMoney = v => `$${Number(v).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})}`;
-const fmtPct = v => `${(v*100).toFixed(1)}%`;
+let portfolio = [
+    { artistId: '1', shares: 50, avgBuyPrice: 20.00 },
+    { artistId: '3', shares: 25, avgBuyPrice: 28.50 },
+    { artistId: '6', shares: 30, avgBuyPrice: 25.00 }
+];
 
-function showPage(pageId){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  const t = document.getElementById(pageId);
-  if(t) t.classList.add('active');
+let transactions = [
+    { id: '1', artistId: '1', artistName: 'VORTEX', type: 'buy', shares: 50, pricePerShare: 20.00, timestamp: '2026-02-10T10:30:00Z' },
+    { id: '2', artistId: '3', artistName: 'NEONWAV3', type: 'buy', shares: 25, pricePerShare: 28.50, timestamp: '2026-02-12T14:20:00Z' },
+    { id: '3', artistId: '6', artistName: 'Soulé', type: 'buy', shares: 30, pricePerShare: 25.00, timestamp: '2026-02-14T09:15:00Z' }
+];
 
-  document.querySelectorAll('.nav-link').forEach(n=>n.classList.remove('active'));
-  const nav = Array.from(document.querySelectorAll('.nav-link')).find(a=>a.getAttribute('onclick') && a.getAttribute('onclick').includes(`'${pageId}'`));
-  if(nav) nav.classList.add('active');
+let currentTransaction = null;
+const userBalance = 5000;
 
-  closeMobileMenu();
-  renderAll();
+// Navigation Functions
+function showPage(pageName) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+
+    // Show selected page
+    document.getElementById(pageName).classList.add('active');
+
+    // Update nav links
+    document.querySelectorAll('.nav-link, .mobile-link').forEach(link => {
+        link.classList.remove('active');
+    });
+
+    // Close mobile menu
+    document.getElementById('mobileMenu').classList.remove('active');
+
+    // Load page content
+    if (pageName === 'dashboard') {
+        filterArtists('trending');
+    } else if (pageName === 'discover') {
+        applyFilters();
+    } else if (pageName === 'portfolio') {
+        loadPortfolio();
+    }
 }
 
-function toggleMobileMenu(){
-  const el = document.getElementById('mobileMenu');
-  const btn = document.querySelector('.mobile-menu-btn');
-  if(!el) return;
-  const open = el.classList.toggle('active');
-  el.setAttribute('aria-hidden', (!open).toString());
-  btn.setAttribute('aria-expanded', open.toString());
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('active');
 }
 
-function closeMobileMenu(){
-  const el = document.getElementById('mobileMenu');
-  if(el) el.classList.remove('active');
-  const btn = document.querySelector('.mobile-menu-btn');
-  if(btn) btn.setAttribute('aria-expanded','false');
+// Artist Card Creation
+function createArtistCard(artist) {
+    const isPositive = artist.priceChange24h >= 0;
+    
+    return `
+        <div class="artist-card" onclick="showArtistDetail('${artist.id}')">
+            <div class="artist-image">
+                <img src="${artist.imageUrl}" alt="${artist.name}">
+                <span class="genre-badge">${artist.genre}</span>
+            </div>
+            <div class="artist-info">
+                <h3 class="artist-name">${artist.name}</h3>
+                <div class="artist-listeners">
+                    <i class="fas fa-users"></i>
+                    <span>${artist.monthlyListeners.toLocaleString()} monthly listeners</span>
+                </div>
+                <div class="price-info">
+                    <div>
+                        <div class="price-main">$${artist.currentPrice.toFixed(2)}</div>
+                        <div class="price-label">per share</div>
+                    </div>
+                    <div class="price-change ${isPositive ? 'positive' : 'negative'}">
+                        <i class="fas fa-${isPositive ? 'arrow-up' : 'arrow-down'}"></i>
+                        <span>${isPositive ? '+' : ''}${artist.priceChange24h.toFixed(1)}%</span>
+                    </div>
+                </div>
+                <div class="artist-availability">
+                    <span>Available shares</span>
+                    <span>${artist.availableShares.toLocaleString()}</span>
+                </div>
+            </div>
+        </div>
+    `;
 }
 
-function renderAll(){
-  renderDashboard();
-  renderDiscover();
-  renderPortfolio();
-  updateBalanceDisplays();
+// Dashboard Functions
+function filterArtists(category) {
+    let filtered = [...artists];
+
+    if (category === 'trending') {
+        filtered.sort((a, b) => Math.abs(b.priceChange24h) - Math.abs(a.priceChange24h));
+    } else if (category === 'hot') {
+        filtered = filtered.filter(a => a.priceChange24h > 0);
+        filtered.sort((a, b) => b.priceChange24h - a.priceChange24h);
+    } else if (category === 'new') {
+        filtered.sort((a, b) => new Date(b.joinedDate) - new Date(a.joinedDate));
+    }
+
+    filtered = filtered.slice(0, 6);
+
+    const grid = document.getElementById('artistsGrid');
+    grid.innerHTML = filtered.map(artist => createArtistCard(artist)).join('');
+
+    // Update active tab
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.closest('.tab-btn').classList.add('active');
 }
 
-function renderDashboard(){
-  document.getElementById('stat-artists').textContent = state.artists.length;
-  const avgGrowth = (state.artists.reduce((s,a)=>s+(a.change||0),0) / state.artists.length) || 0;
-  document.getElementById('stat-growth').textContent = (avgGrowth*100).toFixed(1) + '%';
-  const totalVol = state.artists.reduce((s,a)=>s + (a.price * (a.sharesAvailable||0)), 0);
-  document.getElementById('stat-volume').textContent = fmtMoney(totalVol/1000) + 'k';
+// Discover Functions
+function applyFilters() {
+    const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+    const genreFilter = document.getElementById('genreFilter').value;
+    const sortBy = document.getElementById('sortFilter').value;
 
-  const grid = document.getElementById('artistsGrid');
-  grid.innerHTML = '';
-  state.artists.slice().forEach(a => grid.appendChild(makeArtistCard(a)));
+    let filtered = [...artists];
+
+    // Search filter
+    if (searchQuery) {
+        filtered = filtered.filter(artist =>
+            artist.name.toLowerCase().includes(searchQuery) ||
+            artist.genre.toLowerCase().includes(searchQuery)
+        );
+    }
+
+    // Genre filter
+    if (genreFilter !== 'all') {
+        filtered = filtered.filter(artist => artist.genre === genreFilter);
+    }
+
+    // Sort
+    if (sortBy === 'price') {
+        filtered.sort((a, b) => b.currentPrice - a.currentPrice);
+    } else if (sortBy === 'change') {
+        filtered.sort((a, b) => Math.abs(b.priceChange24h) - Math.abs(a.priceChange24h));
+    } else if (sortBy === 'listeners') {
+        filtered.sort((a, b) => b.monthlyListeners - a.monthlyListeners);
+    }
+
+    const grid = document.getElementById('discoverGrid');
+    const resultsCount = document.getElementById('resultsCount');
+
+    resultsCount.textContent = `Showing ${filtered.length} ${filtered.length === 1 ? 'artist' : 'artists'}`;
+
+    if (filtered.length > 0) {
+        grid.innerHTML = filtered.map(artist => createArtistCard(artist)).join('');
+    } else {
+        grid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                <p style="color: #6b7280; font-size: 1.125rem;">No artists found matching your criteria</p>
+                <button onclick="clearFilters()" style="margin-top: 1rem; color: #9333ea; font-weight: 500; background: none; border: none; cursor: pointer;">
+                    Clear filters
+                </button>
+            </div>
+        `;
+    }
 }
 
-function renderDiscover(){
-  const genres = Array.from(new Set(state.artists.map(a=>a.genre)));
-  const genreFilter = document.getElementById('genreFilter');
-  if(genreFilter && genreFilter.children.length <= 1){
-    genres.forEach(g => { const opt = document.createElement('option'); opt.value = g; opt.textContent = g; genreFilter.appendChild(opt); });
-  }
-
-  const grid = document.getElementById('discoverGrid');
-  if(!grid) return;
-  const search = (document.getElementById('searchInput').value || '').toLowerCase();
-  const genre = (document.getElementById('genreFilter').value || 'all');
-  const sortBy = (document.getElementById('sortFilter').value || 'listeners');
-  let list = state.artists.filter(a => (a.name.toLowerCase().includes(search) || a.genre.toLowerCase().includes(search) || (a.description||'').toLowerCase().includes(search)) && (genre==='all'||a.genre===genre));
-  if(sortBy==='listeners') list.sort((x,y)=>y.listeners-x.listeners);
-  if(sortBy==='price') list.sort((x,y)=>y.price-y.price);
-  if(sortBy==='change') list.sort((x,y)=>y.change-y.change);
-  document.getElementById('resultsCount').textContent = `${list.length} result${list.length===1?'':'s'}`;
-  grid.innerHTML = '';
-  list.forEach(a=>grid.appendChild(makeArtistCard(a,true)));
+function clearFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('genreFilter').value = 'all';
+    applyFilters();
 }
 
-function renderPortfolio(){
-  const totalValue = state.holdings.reduce((sum,h)=>{ const art = state.artists.find(a=>a.id===h.artistId); return sum + (art ? art.price * h.shares : 0); },0);
-  const invested = state.holdings.reduce((s,h)=> s + h.shares * h.avgPrice, 0);
-  const ret = totalValue - invested;
-  document.getElementById('portfolioValue').textContent = fmtMoney(totalValue);
-  document.getElementById('portfolioInvested').textContent = fmtMoney(invested);
-  document.getElementById('portfolioReturn').textContent = (ret>=0?'+':'') + fmtMoney(ret);
-  document.getElementById('portfolioReturnPercent').textContent = invested ? `${((ret/invested)*100).toFixed(2)}%` : '+0.00%';
-
-  const tbody = document.getElementById('holdingsTableBody');
-  tbody.innerHTML = '';
-  state.holdings.forEach(h => {
-    const art = state.artists.find(a=>a.id===h.artistId);
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${art ? art.name : '—'}</td>
-      <td>${h.shares}</td><td>${fmtMoney(h.avgPrice)}</td><td>${art?fmtMoney(art.price):'—'}</td>
-      <td>${art?fmtMoney(art.price*h.shares):'—'}</td><td>${art?fmtMoney((art.price-h.avgPrice)*h.shares):'—'}</td>
-      <td><button class="btn-primary" onclick="openTransactionModal('${h.artistId}','sell')">Sell</button></td>`;
-    tbody.appendChild(tr);
-  });
-
-  const tlist = document.getElementById('transactionsList');
-  tlist.innerHTML = '';
-  state.transactions.slice().reverse().forEach(tx => {
-    const d = new Date(tx.time).toLocaleString();
-    const div = document.createElement('div'); div.className='transaction-item';
-    div.innerHTML = `<div class="transaction-left"><div class="transaction-icon ${tx.type}">${tx.type==='buy'?'+':'−'}</div><div class="transaction-details"><p>${tx.artistName}</p><p>${tx.shares} shares @ ${fmtMoney(tx.price)}</p></div></div><div class="transaction-right"><p>${tx.type.toUpperCase()}</p><p class="transaction-date">${d}</p></div>`;
-    tlist.appendChild(div);
-  });
+// Portfolio Functions
+function loadPortfolio() {
+    calculatePortfolioMetrics();
+    loadHoldings();
+    loadTransactions();
 }
 
-function makeArtistCard(a, showActions=false){
-  const card = document.createElement('article'); card.className='artist-card';
-  const imgWrap = document.createElement('div'); imgWrap.className='artist-image';
-  const img = document.createElement('img'); img.src = a.img || 'AMPLFYfirstimg.png'; img.alt = a.name;
-  imgWrap.appendChild(img);
-  const badge = document.createElement('div'); badge.className='genre-badge'; badge.textContent = a.genre;
-  imgWrap.appendChild(badge);
+function calculatePortfolioMetrics() {
+    let totalInvested = 0;
+    let totalCurrent = 0;
 
-  const info = document.createElement('div'); info.className='artist-info';
-  info.innerHTML = `<div><div class="artist-name">${a.name}</div><div class="artist-listeners">${a.listeners.toLocaleString()} listeners</div></div>`;
-  const priceRow = document.createElement('div'); priceRow.className='price-row';
-  const priceMain = document.createElement('div'); priceMain.className='price-main'; priceMain.textContent = fmtMoney(a.price);
-  const change = document.createElement('div'); change.className='price-change ' + (a.change>=0?'positive':'negative'); change.textContent = (a.change>=0?'+':'') + (a.change*100).toFixed(1) + '%';
-  priceRow.appendChild(priceMain); priceRow.appendChild(change);
+    portfolio.forEach(item => {
+        const artist = artists.find(a => a.id === item.artistId);
+        if (artist) {
+            totalInvested += item.shares * item.avgBuyPrice;
+            totalCurrent += item.shares * artist.currentPrice;
+        }
+    });
 
-  const actions = document.createElement('div'); actions.style.display='flex'; actions.style.gap='8px'; actions.style.marginTop='10px';
-  const view = document.createElement('button'); view.className='btn-secondary'; view.textContent='View'; view.onclick=()=>openArtistModal(a.id);
-  actions.appendChild(view);
-  if(showActions){ const buy = document.createElement('button'); buy.className='btn-primary'; buy.textContent='Buy'; buy.onclick=()=>openTransactionModal(a.id,'buy'); actions.appendChild(buy); }
+    const totalReturn = totalCurrent - totalInvested;
+    const returnPercentage = totalInvested > 0 ? (totalReturn / totalInvested) * 100 : 0;
 
-  info.appendChild(priceRow); info.appendChild(actions);
-  card.appendChild(imgWrap); card.appendChild(info);
-
-  return card;
+    document.getElementById('portfolioValue').textContent = `$${totalCurrent.toFixed(2)}`;
+    document.getElementById('portfolioInvested').textContent = `$${totalInvested.toFixed(2)}`;
+    
+    const returnEl = document.getElementById('portfolioReturn');
+    const returnPercentEl = document.getElementById('portfolioReturnPercent');
+    
+    returnEl.textContent = `${totalReturn >= 0 ? '+' : ''}$${totalReturn.toFixed(2)}`;
+    returnEl.className = `stat-value ${totalReturn >= 0 ? 'green' : 'red'}`;
+    
+    returnPercentEl.textContent = `${totalReturn >= 0 ? '+' : ''}${returnPercentage.toFixed(2)}%`;
+    returnPercentEl.className = `return-percent ${totalReturn >= 0 ? '' : 'red'}`;
 }
 
-function openArtistModal(artistId){
-  const art = state.artists.find(a=>a.id===artistId);
-  const modal = document.getElementById('artistModal');
-  const content = document.getElementById('artistDetailContent');
-  if(!art) return;
-  content.innerHTML = `<div class="artist-detail-header"><img class="artist-detail-image" src="${art.img}" alt="${art.name}"/><div class="artist-detail-info"><div class="artist-detail-genre">${art.genre}</div><h2 class="artist-detail-name">${art.name}</h2><div class="artist-detail-meta"><div>${art.listeners.toLocaleString()} listeners</div></div><p class="artist-detail-bio">${art.description}</p><div class="artist-detail-price-section"><div><div class="artist-detail-price">${fmtMoney(art.price)}</div><div class="artist-detail-change ${(art.change>=0)?'positive':'negative'}">${(art.change>=0?'+':'')+ (art.change*100).toFixed(1)}%</div></div><div><button class="buy-btn" onclick="openTransactionModal('${art.id}','buy')">Buy Shares</button></div></div></div></div>`;
-  modal.classList.add('active'); modal.setAttribute('aria-hidden','false');
+function loadHoldings() {
+    const tbody = document.getElementById('holdingsTableBody');
+    
+    tbody.innerHTML = portfolio.map(item => {
+        const artist = artists.find(a => a.id === item.artistId);
+        if (!artist) return '';
+
+        const currentValue = item.shares * artist.currentPrice;
+        const investedValue = item.shares * item.avgBuyPrice;
+        const totalReturn = currentValue - investedValue;
+        const returnPercentage = (totalReturn / investedValue) * 100;
+        const isPositive = totalReturn >= 0;
+
+        return `
+            <tr>
+                <td>
+                    <div class="artist-cell">
+                        <img src="${artist.imageUrl}" alt="${artist.name}">
+                        <div class="artist-cell-info">
+                            <p>${artist.name}</p>
+                            <p>${artist.genre}</p>
+                        </div>
+                    </div>
+                </td>
+                <td>${item.shares}</td>
+                <td>$${item.avgBuyPrice.toFixed(2)}</td>
+                <td>$${artist.currentPrice.toFixed(2)}</td>
+                <td><strong>$${currentValue.toFixed(2)}</strong></td>
+                <td>
+                    <div class="return-cell ${isPositive ? 'positive' : 'negative'}">
+                        <i class="fas fa-arrow-${isPositive ? 'up' : 'down'}"></i>
+                        <span><strong>${isPositive ? '+' : ''}$${totalReturn.toFixed(2)}</strong> (${isPositive ? '+' : ''}${returnPercentage.toFixed(1)}%)</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="btn-buy" onclick="openTransactionModal('${artist.id}', 'buy')">Buy</button>
+                        <button class="btn-sell" onclick="openTransactionModal('${artist.id}', 'sell')">Sell</button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    }).join('');
 }
 
-function closeArtistModal(){ const m=document.getElementById('artistModal'); if(m){ m.classList.remove('active'); m.setAttribute('aria-hidden','true'); } }
-
-function openTransactionModal(artistId, mode='buy'){
-  const modal = document.getElementById('transactionModal');
-  const art = state.artists.find(a=>a.id===artistId);
-  if(!art) return;
-  document.getElementById('transactionModalTitle').textContent = mode==='buy' ? 'Buy Shares' : 'Sell Shares';
-  const info = document.getElementById('transactionArtistInfo');
-  info.innerHTML = `<div style="display:flex;align-items:center;gap:12px"><img src="${art.img}" style="width:72px;height:72px;border-radius:8px;object-fit:cover"/><div><h3 style="margin:0">${art.name}</h3><div style="color:#9aa6b2">${art.genre}</div><div style="margin-top:6px;font-weight:700">${fmtMoney(art.price)} / share</div></div></div>`;
-  const sharesInput = document.getElementById('sharesInput');
-  sharesInput.value = 1; sharesInput.dataset.mode = mode; sharesInput.dataset.artistId = artistId;
-  document.getElementById('availableShares').textContent = `Available: ${art.sharesAvailable}`;
-  updateTransactionTotal();
-  modal.classList.add('active'); modal.setAttribute('aria-hidden','false');
+function loadTransactions() {
+    const list = document.getElementById('transactionsList');
+    
+    list.innerHTML = [...transactions].reverse().map(transaction => {
+        return `
+            <div class="transaction-item">
+                <div class="transaction-left">
+                    <div class="transaction-icon ${transaction.type}">
+                        <i class="fas fa-arrow-${transaction.type === 'buy' ? 'up' : 'down'}-right"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <p>${transaction.type === 'buy' ? 'Bought' : 'Sold'} ${transaction.shares} shares</p>
+                        <p>${transaction.artistName}</p>
+                    </div>
+                </div>
+                <div class="transaction-right">
+                    <p>$${(transaction.shares * transaction.pricePerShare).toFixed(2)}</p>
+                    <div class="transaction-date">
+                        <i class="fas fa-clock"></i>
+                        <span>${new Date(transaction.timestamp).toLocaleDateString()}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
 }
 
-function closeTransactionModal(){ const m=document.getElementById('transactionModal'); if(m){ m.classList.remove('active'); m.setAttribute('aria-hidden','true'); } }
+// Artist Detail Modal
+function showArtistDetail(artistId) {
+    const artist = artists.find(a => a.id === artistId);
+    if (!artist) return;
 
-function updateTransactionTotal(){
-  const sharesInput = document.getElementById('sharesInput');
-  const shares = Number(sharesInput.value) || 0;
-  const artistId = sharesInput.dataset.artistId;
-  const art = state.artists.find(a=>a.id===artistId);
-  const total = shares * (art ? art.price : 0);
-  document.getElementById('totalCost').textContent = fmtMoney(total);
-  document.getElementById('transactionBalance').textContent = fmtMoney(state.balance);
-  const warn = document.getElementById('transactionWarning');
-  const confirmBtn = document.getElementById('confirmTransactionBtn');
-  if(total > state.balance){ warn.style.display='flex'; warn.textContent = 'Insufficient balance.'; confirmBtn.disabled = true; }
-  else{ warn.style.display='none'; confirmBtn.disabled = false; }
+    const isPositive = artist.priceChange24h >= 0;
+    
+    const content = `
+        <div class="artist-detail-header">
+            <img src="${artist.imageUrl}" alt="${artist.name}" class="artist-detail-image">
+            <div class="artist-detail-info">
+                <span class="artist-detail-genre">${artist.genre}</span>
+                <h1 class="artist-detail-name">${artist.name}</h1>
+                <div class="artist-detail-meta">
+                    <div class="artist-detail-meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>${artist.monthlyListeners.toLocaleString()} listeners</span>
+                    </div>
+                    <div class="artist-detail-meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>Joined ${new Date(artist.joinedDate).toLocaleDateString()}</span>
+                    </div>
+                </div>
+                <p class="artist-detail-bio">${artist.bio}</p>
+                <div class="artist-detail-price-section">
+                    <div>
+                        <div class="artist-detail-price">$${artist.currentPrice.toFixed(2)}</div>
+                        <div class="artist-detail-change price-change ${isPositive ? 'positive' : 'negative'}">
+                            <i class="fas fa-arrow-${isPositive ? 'up' : 'down'}"></i>
+                            <span>${isPositive ? '+' : ''}${artist.priceChange24h.toFixed(1)}% (24h)</span>
+                        </div>
+                    </div>
+                    <button class="buy-btn" onclick="openTransactionModal('${artist.id}', 'buy')">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Buy Shares</span>
+                    </button>
+                </div>
+                <div class="artist-detail-shares">
+                    <div class="share-stat">
+                        <p>Total Shares</p>
+                        <p>${artist.totalShares.toLocaleString()}</p>
+                    </div>
+                    <div class="share-stat">
+                        <p>Available Shares</p>
+                        <p>${artist.availableShares.toLocaleString()}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.getElementById('artistDetailContent').innerHTML = content;
+    document.getElementById('artistModal').classList.add('active');
 }
 
-function confirmTransaction(){
-  const sharesInput = document.getElementById('sharesInput');
-  const mode = sharesInput.dataset.mode; const artistId = sharesInput.dataset.artistId; const shares = Number(sharesInput.value) || 0;
-  const art = state.artists.find(a=>a.id===artistId);
-  if(!art) return alert('Artist not found');
-  const total = shares * art.price;
-  if(mode==='buy'){
-    if(total > state.balance) return alert('Insufficient funds');
-    state.balance -= total;
-    let h = state.holdings.find(x=>x.artistId===artistId);
-    if(!h){ state.holdings.push({artistId, shares, avgPrice: art.price}); } else { const newShares = h.shares + shares; h.avgPrice = ((h.shares*h.avgPrice)+(shares*art.price))/newShares; h.shares = newShares; }
-    state.transactions.push({type:'buy', artistId, artistName: art.name, shares, price: art.price, time: Date.now()});
-  } else {
-    const h = state.holdings.find(x=>x.artistId===artistId);
-    if(!h || h.shares < shares) return alert('Not enough shares');
-    h.shares -= shares; state.balance += total; state.transactions.push({type:'sell', artistId, artistName: art.name, shares, price: art.price, time: Date.now()}); state.holdings = state.holdings.filter(x=>x.shares>0);
-  }
-  closeTransactionModal(); renderAll(); alert('Transaction completed');
+function closeArtistModal() {
+    document.getElementById('artistModal').classList.remove('active');
 }
 
-function updateBalanceDisplays(){ document.querySelectorAll('.balance-amount').forEach(el=>el.textContent = fmtMoney(state.balance)); document.getElementById('topBalance') && (document.getElementById('topBalance').textContent = fmtMoney(state.balance)); document.getElementById('mobileBalance') && (document.getElementById('mobileBalance').textContent = fmtMoney(state.balance)); }
+// Transaction Modal
+function openTransactionModal(artistId, type) {
+    const artist = artists.find(a => a.id === artistId);
+    if (!artist) return;
 
-function applyFilters(){ renderDiscover(); }
+    currentTransaction = { artist, type };
 
-document.addEventListener('DOMContentLoaded', ()=>{
-  document.querySelectorAll('.close-modal').forEach(b=>b.addEventListener('click', ()=>{ b.closest('.modal') && b.closest('.modal').classList.remove('active'); }));
-  document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click', e=>{ if(e.target === m) m.classList.remove('active'); }));
-  renderAll();
+    // Close artist detail modal if open
+    closeArtistModal();
+
+    const modal = document.getElementById('transactionModal');
+    const title = document.getElementById('transactionModalTitle');
+    const artistInfo = document.getElementById('transactionArtistInfo');
+    const confirmBtn = document.getElementById('confirmTransactionBtn');
+
+    title.textContent = type === 'buy' ? 'Buy Shares' : 'Sell Shares';
+    
+    artistInfo.innerHTML = `
+        <img src="${artist.imageUrl}" alt="${artist.name}">
+        <div class="artist-info-modal-text">
+            <h3>${artist.name}</h3>
+            <p>${artist.genre}</p>
+            <p class="modal-price">$${artist.currentPrice.toFixed(2)} / share</p>
+        </div>
+    `;
+
+    if (type === 'sell') {
+        const holding = portfolio.find(p => p.artistId === artistId);
+        const maxShares = holding ? holding.shares : 0;
+        document.getElementById('sharesInput').max = maxShares;
+        document.getElementById('availableShares').textContent = `Available: ${maxShares} shares (Your holdings)`;
+        confirmBtn.textContent = 'Confirm Sale';
+        confirmBtn.className = 'btn-primary sell';
+    } else {
+        document.getElementById('sharesInput').max = artist.availableShares;
+        document.getElementById('availableShares').textContent = `Available: ${artist.availableShares.toLocaleString()} shares`;
+        confirmBtn.textContent = 'Confirm Purchase';
+        confirmBtn.className = 'btn-primary';
+    }
+
+    document.getElementById('sharesInput').value = 1;
+    updateTransactionTotal();
+
+    modal.classList.add('active');
+}
+
+function closeTransactionModal() {
+    document.getElementById('transactionModal').classList.remove('active');
+    currentTransaction = null;
+}
+
+function updateTransactionTotal() {
+    if (!currentTransaction) return;
+
+    const shares = parseInt(document.getElementById('sharesInput').value) || 1;
+    const totalCost = shares * currentTransaction.artist.currentPrice;
+    const maxShares = currentTransaction.type === 'sell' 
+        ? (portfolio.find(p => p.artistId === currentTransaction.artist.id)?.shares || 0)
+        : currentTransaction.artist.availableShares;
+
+    document.getElementById('totalCost').textContent = `$${totalCost.toFixed(2)}`;
+
+    const warningBox = document.getElementById('transactionWarning');
+    const confirmBtn = document.getElementById('confirmTransactionBtn');
+
+    if (currentTransaction.type === 'buy' && totalCost > userBalance) {
+        warningBox.innerHTML = '<i class="fas fa-exclamation-circle"></i> Insufficient balance. You need $' + (totalCost - userBalance).toFixed(2) + ' more.';
+        warningBox.style.display = 'flex';
+        confirmBtn.disabled = true;
+    } else if (shares > maxShares || shares < 1) {
+        warningBox.innerHTML = '<i class="fas fa-exclamation-circle"></i> Invalid number of shares.';
+        warningBox.style.display = 'flex';
+        confirmBtn.disabled = true;
+    } else {
+        warningBox.style.display = 'none';
+        confirmBtn.disabled = false;
+    }
+}
+
+function confirmTransaction() {
+    if (!currentTransaction) return;
+
+    const shares = parseInt(document.getElementById('sharesInput').value);
+    const { artist, type } = currentTransaction;
+
+    // Add transaction to history
+    const newTransaction = {
+        id: Date.now().toString(),
+        artistId: artist.id,
+        artistName: artist.name,
+        type: type,
+        shares: shares,
+        pricePerShare: artist.currentPrice,
+        timestamp: new Date().toISOString()
+    };
+    transactions.push(newTransaction);
+
+    // Update portfolio
+    const existingHolding = portfolio.find(p => p.artistId === artist.id);
+    
+    if (type === 'buy') {
+        if (existingHolding) {
+            const totalCost = (existingHolding.shares * existingHolding.avgBuyPrice) + (shares * artist.currentPrice);
+            existingHolding.shares += shares;
+            existingHolding.avgBuyPrice = totalCost / existingHolding.shares;
+        } else {
+            portfolio.push({
+                artistId: artist.id,
+                shares: shares,
+                avgBuyPrice: artist.currentPrice
+            });
+        }
+    } else if (type === 'sell' && existingHolding) {
+        existingHolding.shares -= shares;
+        if (existingHolding.shares <= 0) {
+            portfolio = portfolio.filter(p => p.artistId !== artist.id);
+        }
+    }
+
+    closeTransactionModal();
+    
+    // Refresh portfolio if on that page
+    if (document.getElementById('portfolio').classList.contains('active')) {
+        loadPortfolio();
+    }
+
+    alert(`Successfully ${type === 'buy' ? 'bought' : 'sold'} ${shares} shares of ${artist.name}!`);
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    showPage('dashboard');
 });
+
+// Close modals when clicking outside
+window.onclick = function(event) {
+    const artistModal = document.getElementById('artistModal');
+    const transactionModal = document.getElementById('transactionModal');
+    
+    if (event.target === artistModal) {
+        closeArtistModal();
+    }
+    if (event.target === transactionModal) {
+        closeTransactionModal();
+    }
+}
